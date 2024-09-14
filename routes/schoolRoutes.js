@@ -7,7 +7,7 @@ const router = express.Router();
 router.post('/add', authMiddleware('superadmin'), addSchool);
 
 // Get all schools (Superadmin only)
-router.get('/all', authMiddleware('superadmin'), getAllSchools);
+router.get('/all',  getAllSchools);
 
 // Remove a field from a school (Superadmin only)
 router.put('/remove-field', authMiddleware('superadmin'), removeFieldFromSchool);

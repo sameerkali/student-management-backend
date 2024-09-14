@@ -2,8 +2,8 @@ const School = require('../models/schoolModel');
 
 // Remove a field from student registration form (Schooladmin only)
 exports.removeFieldFromRegistrationForm = async (req, res) => {
-  const { fieldToRemove } = req.body;
-  const schoolId = req.user.school; // Assuming schooladmin is assigned to a school
+  const { fieldToRemove, schoolId } = req.body;
+  console.log("req.body:", req.body)
   
   try {
     const school = await School.findById(schoolId);

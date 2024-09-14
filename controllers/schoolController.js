@@ -28,12 +28,18 @@ exports.getAllSchools = async (req, res) => {
   }
 };
 
-// Remove a field from a school (Superadmin only)
 exports.removeFieldFromSchool = async (req, res) => {
-  const { fieldToRemove } = req.body;
-  const schoolId = req.user.school; // Assuming superadmin has access to all schools or a specific school
+  const { schoolId, fieldToRemove } = req.body; // Extract schoolId and fieldToRemove from the request body
+
+  console.log('Field to Remove:', fieldToRemove); // Debugging: Check if the field is received
+  console.log('School ID:', schoolId); // Debugging: Check if the schoolId is correct
 
   try {
+    // Check if schoolId is valid
+    if (!schoolId) {
+      return res.status(400).json({ message: 'School ID is required' });
+    }
+
     const school = await School.findById(schoolId);
     if (!school) {
       return res.status(404).json({ message: 'School not found' });
@@ -45,6 +51,7 @@ exports.removeFieldFromSchool = async (req, res) => {
 
     res.json({ message: 'Field removed successfully from school', fields: school.fields });
   } catch (error) {
+    console.error('Error:', error); // Debugging: Log any errors
     res.status(500).json({ error: error.message });
   }
 };
