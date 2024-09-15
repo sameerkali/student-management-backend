@@ -22,8 +22,12 @@ const studentSchema = new mongoose.Schema({
   },
   fields: {
     type: Array,
-    default: ['name', 'dob', 'email'], // Default fields for each student
+    default: ['name', 'dob', 'email'],
   },
+  subjects: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Subject',
+  }], 
   createdAt: {
     type: Date,
     default: Date.now,

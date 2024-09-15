@@ -1,5 +1,5 @@
 const express = require('express');
-const { addSchool, getAllSchools, removeFieldFromSchool } = require('../controllers/schoolController');
+const { addSchool, getAllSchools, removeFieldFromSchool, getAllStudents } = require('../controllers/schoolController');
 const { createRegistration, updateRegistration, deleteRegistration, getRegistration, approveRegistration, rejectRegistration } = require('../controllers/registrationController');
 const authMiddleware = require('../middlewares/authMiddleware');
 const router = express.Router();
@@ -9,6 +9,7 @@ router.post('/add', authMiddleware('superadmin'), addSchool);
 
 // Get all schools (Superadmin only)
 router.get('/all',  getAllSchools);
+router.get('/all-students',  getAllStudents);
 
 // Remove a field from a school (Superadmin only)
 router.put('/remove-field', authMiddleware('superadmin'), removeFieldFromSchool);

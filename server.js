@@ -3,7 +3,7 @@ const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 const schoolRoutes = require('./routes/schoolRoutes');
 const schoolAdminRoutes = require('./routes/schoolAdminRoutes');
-const studentRoutes = require('./routes/studentRoutes');
+const subjectRoutes = require('./routes/subjectRoutes');
 
 
 
@@ -25,7 +25,7 @@ app.use('/api/users', userRoutes);
 
 app.use('/api/schools', schoolRoutes);
 app.use('/api/schooladmin', schoolAdminRoutes);
-app.use('/api/students', studentRoutes);
+app.use('/api/subjects', subjectRoutes);
 
 
 

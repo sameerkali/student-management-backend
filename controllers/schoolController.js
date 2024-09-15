@@ -1,4 +1,5 @@
 const School = require('../models/schoolModel');
+const User = require('../models/userModel');
 
 // Add a new school (Superadmin only)
 exports.addSchool = async (req, res) => {
@@ -18,7 +19,7 @@ exports.addSchool = async (req, res) => {
   }
 };
 
-// Get all schools (Superadmin only)
+// Get all schools
 exports.getAllSchools = async (req, res) => {
   try {
     const schools = await School.find();
@@ -27,6 +28,16 @@ exports.getAllSchools = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+// Get all getAllStudents 
+exports.getAllStudents = async (req, res) => {
+  try {
+    const students = await User.find({ role: 'student' });
+    res.json(students);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 
 exports.removeFieldFromSchool = async (req, res) => {
   const { schoolId, fieldToRemove } = req.body; // Extract schoolId and fieldToRemove from the request body
