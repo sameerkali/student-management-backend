@@ -1,4 +1,4 @@
-# student management system ("live)['https://student-management-backend-4pgz.onrender.com/']
+# student management system [live](https://student-management-backend-4pgz.onrender.com/)
 
 ## login credentials
 
@@ -17,20 +17,13 @@
 }
 
 #### student
-studentID
-66e68f673784121791406f8f
 
 {
   "email": "student@gmail.com",
   "password": "student"
 }
 
-{
-  "name": "st1",
-  "email": "st1@gmail.com",
-  "password": "st1",
-  "role": "student"
-}
+
 
 
 
