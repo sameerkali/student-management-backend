@@ -57,3 +57,40 @@ exports.getRegistration = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+exports.approveRegistration = async (req, res) => {
+    const { registrationId } = req.params;
+  
+    try {
+      const registration = await StudentRegistration.findById(registrationId);
+      if (!registration) {
+        return res.status(404).json({ message: 'Registration not found' });
+      }
+  
+      registration.status = 'approved';
+      await registration.save();
+  
+      res.json({ message: 'Student registration approved', registration });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  };
+  
+  // Reject a student registration (super Admin)
+  exports.rejectRegistration = async (req, res) => {
+    const { registrationId } = req.params;
+  
+    try {
+      const registration = await StudentRegistration.findById(registrationId);
+      if (!registration) {
+        return res.status(404).json({ message: 'Registration not found' });
+      }
+  
+      registration.status = 'rejected';
+      await registration.save();
+  
+      res.json({ message: 'Student registration rejected', registration });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  };

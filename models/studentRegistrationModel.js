@@ -6,7 +6,7 @@ const studentRegistrationSchema = new mongoose.Schema({
     required: true,
   },
   dob: {
-    type: Date,
+    type: String,
     required: true,
   },
   email: {
@@ -21,12 +21,12 @@ const studentRegistrationSchema = new mongoose.Schema({
   },
   fields: {
     type: Array,
-    default: ['name', 'dob', 'email'], // Default fields for registration
+    default: ['name', 'dob', 'email'],
   },
   status: {
     type: String,
     enum: ['pending', 'approved', 'rejected'],
-    default: 'pending', // Initial status
+    default: 'pending', // Default status is pending
   },
   createdAt: {
     type: Date,
@@ -35,5 +35,4 @@ const studentRegistrationSchema = new mongoose.Schema({
 });
 
 const StudentRegistration = mongoose.model('StudentRegistration', studentRegistrationSchema);
-
 module.exports = StudentRegistration;

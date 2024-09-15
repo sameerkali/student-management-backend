@@ -1,6 +1,6 @@
 const express = require('express');
 const { addSchool, getAllSchools, removeFieldFromSchool } = require('../controllers/schoolController');
-const { createRegistration, updateRegistration, deleteRegistration, getRegistration } = require('../controllers/registrationController');
+const { createRegistration, updateRegistration, deleteRegistration, getRegistration, approveRegistration, rejectRegistration } = require('../controllers/registrationController');
 const authMiddleware = require('../middlewares/authMiddleware');
 const router = express.Router();
 
@@ -24,6 +24,11 @@ router.delete('/registration/:id', authMiddleware('superadmin'), deleteRegistrat
 
 // Get a specific student registration (Superadmin and Student can view)
 router.get('/registration/:id', getRegistration);
+
+router.put('/registration/:registrationId/approve', authMiddleware('superadmin'), approveRegistration);
+
+// Reject student registration (School Admin)
+router.put('/registration/:registrationId/reject', authMiddleware('superadmin'), rejectRegistration);
 
 
 module.exports = router;
